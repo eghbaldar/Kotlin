@@ -1,0 +1,88 @@
+<resources>
+
+    <string-array name="arrCalDays">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+    </string-array>
+    <string-array name="arrCalMonths">
+        <item>فروردین</item>
+        <item>اردیبهشت</item>
+        <item>خرداد</item>
+        <item>تیر</item>
+        <item>مرداد</item>
+        <item>شهریور</item>
+        <item>مهر</item>
+        <item>آبان</item>
+        <item>آذر</item>
+        <item>دی</item>
+        <item>بهمن</item>
+        <item>اسفند</item>
+    </string-array>
+    <string-array name="arrCalYears">
+        <item>1401</item>
+        <item>1402</item>
+        <item>1403</item>
+    </string-array>
+
+
+    <string name="app_name">IFP STAFF</string>
+
+    <string name="staffEghbaldar">Ali Mohammad Eghbaldar</string>
+    <string name="staffEghbaldarTell">+989111380846</string>
+
+    <string name="staffArmantalab">Benyamin Armantalab</string>
+    <string name="staffArmantalabTell">+989216343320</string>
+
+    <string name="staffFadaei">Maryam Fadaei</string>
+    <string name="staffFadaeiTell">+989020763947</string>
+
+    <string name="staffSarraf">Ghazal Sarraf</string>
+    <string name="staffSarraftell">+989332300598</string>
+
+    <string name="staffPeyvaste">Tahere Peyvaste</string>
+    <string name="staffPeyvasteTell">+989112315480</string>
+
+    <string name="staffAsal">Asal Eghbaldar</string>
+    <string name="staffAsalTell">+989112318211</string>
+
+    <string name="staffToroghi">Mohammad Amin Toroghi</string>
+    <string name="staffToroghiTell">+989119322911</string>
+
+    <string name="staffRava">Bahar Rava</string>
+    <string name="staffRavaTell">++989024815701</string>
+
+    <string name="IFP">IRAN FILM PORT</string>
+    <string name="IFPwebsite">http://iranfilmport.com</string>
+    <string name="IFPinstagram">https://www.instagram.com/iranfilmport/</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

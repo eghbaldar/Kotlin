@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/group1" >
+        <item
+            android:id="@+id/staff"
+            android:title="STAFF"
+            android:icon="@drawable/icon_staff"
+            app:iconTint="@android:color/white"
+            app:showAsAction="ifRoom">
+            <menu>
+                <item
+                    android:id="@+id/staffEghbaldar"
+                    android:title="@string/staffEghbaldar"
+                    android:icon="@drawable/icon_staff"
+                    app:showAsAction="always" />
+
+                <item
+                    android:id="@+id/staffArmantalab"
+                    android:icon="@drawable/icon_staff"
+                    android:title="@string/staffArmantalab" />
+
+                <item
+                    android:id="@+id/staffFadaei"
+                    android:icon="@drawable/icon_staff"
+                    android:title="@string/staffFadaei" />
+
+                <item
+                    android:id="@+id/staffSarraf"
+                    android:icon="@drawable/icon_staff"
+                    android:title="@string/staffSarraf" />
+
+                <item
+                    android:id="@+id/staffPeyvaste"
+                    android:icon="@drawable/icon_staff"
+                    android:title="@string/staffPeyvaste" />
+
+                <item
+                    android:id="@+id/staffAsal"
+                    android:icon="@drawable/icon_staff"
+                    android:title="@string/staffAsal" />
+
+                <item
+                    android:id="@+id/staffToroghi"
+                    android:icon="@drawable/icon_staff"
+                    android:title="@string/staffToroghi" />
+
+                <item
+                    android:id="@+id/staffRava"
+                    android:icon="@drawable/icon_staff"
+                    android:title="@string/staffRava" />
+
+            </menu>
+        </item>
+    </group>
+
+    <group>
+
+        <item
+            android:id="@+id/developer"
+            android:enabled="false"
+            android:title="Developer" />
+        <item
+            android:id="@+id/developerName"
+            android:enabled="false"
+            android:title="Alimohammad Eghbaldar" />
+        <item
+            android:id="@+id/developerYear"
+        android:enabled="false"
+            android:title="© 2022" />
+    </group>
+
+
+
+</menu>
+
+    <!--:Alimohammad Eghbaldar © 2022-->

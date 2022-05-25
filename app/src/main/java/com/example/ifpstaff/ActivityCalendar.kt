@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.ifpstaff.databinding.ActivityCalendarBinding
 import com.google.android.material.navigation.NavigationView
@@ -19,6 +20,7 @@ class ActivityCalendar : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         //It's Clear
         binding = ActivityCalendarBinding.inflate(layoutInflater)
@@ -42,7 +44,6 @@ class ActivityCalendar : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
         //for click on NavigationItems (با این دستور، برنامه آماده شنیدن فراخوان برای دگمه است که در تابع زیر گرفته میشود)
         binding.navView.setNavigationItemSelectedListener(this)
-
 
     }
 

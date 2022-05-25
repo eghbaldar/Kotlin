@@ -16,7 +16,7 @@ android {
         minSdk 23
         targetSdk 32
         versionCode 1
-        versionName "1.2.0" //TODO You shouldn't put 'v-' in the first of version number. This string compare with file name of latest version on the server!
+        versionName "1.2.2" //TODO You shouldn't put 'v-' in the first of version number. This string compare with file name of latest version on the server!
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -6,7 +6,7 @@
     android:label="@string/IFP"
     >
 
-
+    <!--Access to Internet-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -20,16 +20,22 @@
         android:icon="@mipmap/ic_main"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.IFPSTAFF">
+        android:theme="@style/Theme.IFPSTAFF"
+        android:forceDarkAllowed="true"
+        >
+
         <activity
             android:name=".ActivityCalendar"
             android:exported="false" />
+
         <!--If there is no the below code, after ActivitySplash, the MainActivty will not be opened-->
-        <activity android:name=".MainActivity"/>
+        <activity
+            android:name=".MainActivity"/>
+
+        <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar" -->
         <activity
             android:name=".ActivitySplash"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

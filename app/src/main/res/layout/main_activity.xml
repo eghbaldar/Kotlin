@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@null"
-        android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+        android:theme="@style/Theme.IFPSTAFF"
         app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
         />
 

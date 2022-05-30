@@ -32,8 +32,10 @@
         <activity
             android:name=".MainActivity"/>
 
-        <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar" -->
+        <!-- if no there this command: [android:theme="@style/Theme.AppCompat.Light.NoActionBar], splashActivity following
+        themes.xml (light/night) theme! and in they, there is ActionBar, that it is a pretty ugly!-->
         <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".ActivitySplash"
             android:exported="true">
             <intent-filter>

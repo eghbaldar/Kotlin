@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
@@ -125,7 +126,14 @@ class ActivityCalendar : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
     //region exit event
     override fun onBackPressed() {
-        ExitDialoge()
+
+        val count = supportFragmentManager.backStackEntryCount
+        if (count == 0) {
+            super.onBackPressed()
+        } else {
+            supportFragmentManager.popBackStack()
+        }
+        //Toast.makeText(this,count.toString(),Toast.LENGTH_LONG).show()
     }
 
     fun ExitDialoge() {

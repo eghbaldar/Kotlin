@@ -67,41 +67,13 @@ class fragmentCalendarMain : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onStart() {
         super.onStart()
-
-        InitializeDate()
-        getUpdateList()
-
-    }
-
-    private fun InitializeDate() {
-
-        //Show today's date!
-        viewmodel.getLongTimestampt() // چرا از ویومدل استفاده کردیم؟ چون براساس قابلیت لایف سایکل، متغییر ویومدل مقدار اولیه و یا تغییر کرده ی خود را حفظ میکند، در صورت یکه اگه از مقدار دهی معمولی استفاده میکردیم، هر بار خارج میشدیم و با بارگشت دوباره، تاریخ لود نمی شد
-
-        /***************** Set Spinners' date *****************/
-        //TODO: با استفاده از کدهای زیر، ابتدا آیتم رشته ای در آرایه پیدا کرده و سپس ایندکس آن را برای اسپاینر ست میکنیم
-        var Y: Int = 0
-        context?.let {
-            ArrayAdapter.createFromResource(
-                it,
-                R.array.arrCalYears,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                Y = adapter.getPosition(viewmodel.getOnlyNumbericYear().toString()).toInt()
-            }
-        }
-        binding.spinnerYears.setSelection(Y)
-        binding.spinnerMonth.setSelection(viewmodel.getOnlyNumbericMonth() - 1) //TODO چون انتظار ایندکس ماه را دارد و ما همیشه خود ماه را میخوانیم پس باید یک واحد کم شود
-        binding.spinnerDays.setSelection(viewmodel.getOnlyNumbericDay() - 1) //TODO چون انتظار ایندکس روز را دارد و ما همیشه خود روز را میخوانیم پس باید یک واحد کم شود
-        //TODO: سوال؟ چرا برای اسپاینرهای ماه و روز از مدل اسپاینر سال استفاده نکردیم؟ چون اسپاینرهای ماه و روز خودشان بصورت عدد قابلیت تحلیل دارند
-        /***************** End Spinners' date *****************/
     }
 
     private fun getUpdateList() {
         //First load the data from database
         //کدهای زیر در این متد نوشته شده است بجای آنکرئیت ویو چون در آن متد هنوز اسپینرها ساخته نمی شد و باعث خطا میشد
         Y = binding.spinnerYears.selectedItem.toString()
-        M = (binding.spinnerMonth.selectedItemPosition + 1).toString()
+        M = binding.spinnerMonth.selectedItemPosition.toString()
         D = binding.spinnerDays.selectedItem.toString()
         //Update RecyclerView
         viewmodel.fetchProfiles(Y, M, D)
@@ -114,6 +86,31 @@ class fragmentCalendarMain : Fragment(), AdapterView.OnItemSelectedListener {
 
         binding = FragmentCalendarMainBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(this).get(fragmentCalendarMainViewModel::class.java)
+
+
+        /***************** Set Spinners' date *****************/
+        viewmodel.returnNewDayForSpinner.observe(this, Observer { day->
+            Log.i("day", day)
+            binding.spinnerDays.setSelection(day.toInt())
+        })
+        viewmodel.returnNewMonthSpinner.observe(this, Observer { month->
+            binding.spinnerMonth.setSelection(month.toInt())
+        })
+        viewmodel.returnNewYearSpinner.observe(this, Observer { year ->
+            //TODO: با استفاده از کدهای زیر، ابتدا آیتم رشته ای در آرایه پیدا کرده و سپس ایندکس آن را برای اسپاینر ست میکنیم
+            var Y: Int = 0
+            context?.let {
+                ArrayAdapter.createFromResource(
+                    it,
+                    R.array.arrCalYears,
+                    android.R.layout.simple_spinner_item
+                ).also { adapter ->
+                    Y = adapter.getPosition(year)
+                }
+            }
+            binding.spinnerYears.setSelection(Y)
+        })
+        /***************** End Spinners' date *****************/
 
         //ADD TASK [Button] : Insert into Database
         binding.btnAddTask.setOnClickListener {
@@ -193,6 +190,7 @@ class fragmentCalendarMain : Fragment(), AdapterView.OnItemSelectedListener {
             }
         }
         /********** End Get Handler of Spinners **********/
+
         viewmodel.returnCurrentDateTime.observe( this, Observer { newValue ->
             //TODO: چرا کدهای زیر را در ویومدل قرار ندادم؟ چون تغییر استایلی از طریق مقدار برگشتی استرینگ رشته ای منتقل نمی شد متاسفانه
             val _result = "تاریخ:    $newValue"
@@ -209,23 +207,21 @@ class fragmentCalendarMain : Fragment(), AdapterView.OnItemSelectedListener {
         })
 
         //Go to next or to previous date!
+        //کدهای زیر در این متد نوشته شده است بجای آنکرئیت ویو چون در آن متد هنوز اسپینرها ساخته نمی شد و باعث خطا میشد
         binding.btnDateNext.setOnClickListener {
-            //کدهای زیر در این متد نوشته شده است بجای آنکرئیت ویو چون در آن متد هنوز اسپینرها ساخته نمی شد و باعث خطا میشد
-            D = ((binding.spinnerDays.selectedItem).toString().toInt() + 1).toString()
-            binding.spinnerDays.setSelection(binding.spinnerDays.selectedItemPosition + 1)
             //Firing updating RecyclerView
+            Y = binding.spinnerYears.selectedItem.toString()
+            M = binding.spinnerMonth.selectedItemPosition.toString()
+            D = (binding.spinnerDays.selectedItem.toString().toInt() + 1).toString()
             viewmodel.fetchProfiles(Y, M, D)
-            //Set New Long Timestamp after go to the next date
-            viewmodel.getLongTimestampt_WithParticularDate(Y.toInt(),M.toInt(),D.toInt())
         }
+        //کدهای زیر در این متد نوشته شده است بجای آنکرئیت ویو چون در آن متد هنوز اسپینرها ساخته نمی شد و باعث خطا میشد
         binding.btnDatePrevious.setOnClickListener {
-            //کدهای زیر در این متد نوشته شده است بجای آنکرئیت ویو چون در آن متد هنوز اسپینرها ساخته نمی شد و باعث خطا میشد
-            D = ((binding.spinnerDays.selectedItem).toString().toInt() - 1).toString()
-            binding.spinnerDays.setSelection(binding.spinnerDays.selectedItemPosition - 1)
             //Firing updating RecyclerView
+            Y = binding.spinnerYears.selectedItem.toString()
+            M = binding.spinnerMonth.selectedItemPosition.toString()
+            D = (binding.spinnerDays.selectedItem.toString().toInt() - 1).toString()
             viewmodel.fetchProfiles(Y, M, D)
-            //Set New Long Timestamp after go to the next date
-            viewmodel.getLongTimestampt_WithParticularDate(Y.toInt(),M.toInt(),D.toInt())
         }
 
         return binding.root
@@ -247,7 +243,7 @@ class fragmentCalendarMain : Fragment(), AdapterView.OnItemSelectedListener {
         adapter.notifyItemChanged(index)
     }
 
-//    fun getUserProfileCallback() {
+    fun getUserProfileCallback() {
 //        object {
 //            fun onSuccess(result: ModelCalendar) {
 //                //binding.userLabel.text = "Hello, ${result.note}!"
@@ -259,7 +255,7 @@ class fragmentCalendarMain : Fragment(), AdapterView.OnItemSelectedListener {
 //                Log.d("HomeActivity1", "Error: $msg")
 //            }
 //        }
-//    }
+   }
 
     private fun updateProfile(oldProfile: ModelCalendar) {
 //        try {

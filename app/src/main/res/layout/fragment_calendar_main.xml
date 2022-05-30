@@ -67,14 +67,14 @@
             android:id="@+id/btnDatePrevious"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:text="&lt;"
+            android:text="&lt;-"
             tools:ignore="HardcodedText,MissingConstraints" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDateNext"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:text="&gt;"
+            android:text="+&gt;"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="HardcodedText,MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -83,11 +83,13 @@
         android:background="@drawable/shape_round_corner"
         android:theme="@style/textEdit"
         android:hint="متن خود را بنویسید ..."
+        android:textColorHint="@color/gray"
         android:id="@+id/etTask"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:ems="10"
         android:gravity="right"
+        android:textColor="@color/black"
         android:inputType="textMultiLine"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="24dp"

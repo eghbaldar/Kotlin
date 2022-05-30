@@ -43,7 +43,7 @@ class ShamsiDate {
     }
 
     fun getMonthName_WithParticularDate(M: Int): String {
-        pdate.setShMonth(5)
+        pdate.setShMonth(M)
         return pdate.monthName()
     }
 

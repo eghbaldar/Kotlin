@@ -4,15 +4,36 @@ import android.content.Context
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.ifpstaff.model.ModelCalendarOverview
+import com.example.ifpstaff.retrofitHandler.CalendarDbHandler
+import com.example.ifpstaff.retrofitHandler.CalendarOverviewDbHandler
+import com.example.ifpstaff.retrofitService.RetrofitClientInstance
 import com.google.android.material.navigation.NavigationView
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainActivtyViewModel : ViewModel() {
 
+    // Return full list of CalendarOverview
+    private val _returnCalendarOverview = MutableLiveData<List<ModelCalendarOverview>>()
+    val returnCalendarOverview : LiveData<List<ModelCalendarOverview>>
+    get() = _returnCalendarOverview
+
+    private var compositeDisposable = CompositeDisposable()
+
+    private val calendarOverviewDbHandler: CalendarOverviewDbHandler =
+        RetrofitClientInstance.retrofitInstance.create(
+            CalendarOverviewDbHandler::class.java
+        )
+
     init {
+        fetchCalendarOverview()
     }
 
     override fun onCleared() {
@@ -73,5 +94,27 @@ class MainActivtyViewModel : ViewModel() {
         }
 
 
+    }
+
+    fun fetchCalendarOverview() {
+        try {
+            compositeDisposable.add(
+                calendarOverviewDbHandler.getCalOverview(
+                )
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        { e ->
+                            //وقتی پر میشود یعنی دارد اعلام میکند که چیزی تغییر کرده، بنابراین لیست باید بروز شود
+                            _returnCalendarOverview.value = e
+                        },
+                        { e ->
+                            Log.e("fetchProfiles1", e.message ?: "onError")
+                        }
+                    )
+            )
+        } catch (ex: Exception) {
+            Log.e("fetchProfiles2", ex.message ?: "onError")
+        }
     }
 }

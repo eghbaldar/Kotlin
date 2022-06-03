@@ -1,5 +1,7 @@
 package com.example.ifpstaff
 
+import android.R.attr
+import android.app.ActionBar
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
@@ -8,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.ifpstaff.databinding.MainActivityBinding
@@ -15,7 +18,17 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.navigation.NavigationView
 import androidx.lifecycle.ViewModelProvider
 import com.example.ifpstaff.databinding.ActivityDialogeInfoContactBinding
+import android.widget.LinearLayout
+import androidx.core.view.marginTop
+import android.R.attr.right
 
+import android.R.attr.left
+import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import com.example.ifpstaff.fragments.calendar.calendarAdapter
+import com.example.ifpstaff.model.ModelCalendar
+import com.example.ifpstaff.model.ModelCalendarOverview
+import androidx.recyclerview.widget.GridLayoutManager
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -27,6 +40,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // Create Variable of ViewModel Class (MainActivity)
     private lateinit var MainAtivityViewMode: MainActivtyViewModel
+
+    //temp
+    private var adapterOverView = CalendarOverviewAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +59,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // It's clear
         setContentView(binding.root)
+
+        //First the RecyclerView is not visible and waiting for loading (after progressBar)
+        binding.CalendarOverviewRecyclerView.setVisibility(View.GONE)
 
         //Make visible Toggle Icon (Three-Line [DrawerNavigation] icon on actionbar)
         val toogle = ActionBarDrawerToggle(
@@ -88,6 +107,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(intent)
         }
 
+        // TODO: Set CalendarOverview Adapter
+        // Observing...
+        MainAtivityViewMode.returnCalendarOverview.observe(this, Observer { newValue ->
+            displayOverviewCalendars(newValue)
+        })
+        //Set adapter to RecyclerView
+        binding.CalendarOverviewRecyclerView.adapter= adapterOverView
+        // due to the following code, recyclerView items show in GRID mode!
+        binding.CalendarOverviewRecyclerView.layoutManager = GridLayoutManager(this, 6)
+        //TODO: End..
+    }
+
+    override fun onStart() {
+        super.onStart()
+        adapterOverView.notifyDataSetChanged()
+        //Toast.makeText(this,"Start",Toast.LENGTH_LONG).show()
+    }
+
+    private fun displayOverviewCalendars(calOverview: List<ModelCalendarOverview>) {
+
+        adapterOverView.items.clear()
+        adapterOverView.items.addAll(calOverview)
+        adapterOverView.notifyDataSetChanged()
+        // After completing RecyclerView items: RecyclerView will be shown and ProgressBar will be GONE!
+        binding.CalendarOverviewRecyclerView.setVisibility(View.VISIBLE)
+        binding.progressBar.setVisibility(View.GONE)
     }
 
     //region menuTopRight

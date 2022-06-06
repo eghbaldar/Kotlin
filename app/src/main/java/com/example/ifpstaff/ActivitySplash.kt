@@ -23,10 +23,11 @@ class ActivitySplash : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_splash)
+
+        //It's Clear
         binding = ActivitySplashBinding.inflate(layoutInflater)
 
-        //
+        //It's Clear
         ActivitySplashViewModel =
             ViewModelProvider(this).get(com.example.ifpstaff.ActivitySplashViewModel::class.java)
 
@@ -60,7 +61,7 @@ class ActivitySplash : AppCompatActivity() {
                 // we used the postDelayed(Runnable, time) method
                 // to send a message with a delayed time.
                 Handler().postDelayed({
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, ActivityLogin::class.java)
                     startActivity(intent)
                     finish()
                 }, 2000) // 2000 is the delayed time in milliseconds.

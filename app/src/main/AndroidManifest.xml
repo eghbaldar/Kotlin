@@ -1,43 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ifpstaff"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:label="@string/IFP"
-    >
-
-    <!--Access to Internet-->
+    package="com.example.ifpstaff"
+    android:label="@string/IFP">
+    <!-- Access to Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Access to VIBRATE -->
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
-
-        tools:replace="android:label"
-        android:label="@string/IFP"
-
+        android:forceDarkAllowed="true"
         android:icon="@mipmap/ic_main"
+        android:label="@string/IFP"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IFPSTAFF"
-        android:forceDarkAllowed="true"
-        >
-
+        tools:replace="android:label">
+        <activity
+            android:name=".ActivityLogin"
+            android:exported="false"
+            android:label="Try Your Chance!" />
         <activity
             android:name=".ActivityCalendar"
-            android:exported="false" />
-
-        <!--If there is no the below code, after ActivitySplash, the MainActivty will not be opened-->
+            android:exported="false" /> <!-- If there is no the below code, after ActivitySplash, the MainActivty will not be opened -->
+        <activity android:name=".MainActivity" />
+        <!--
+ if no there this command: [android:theme="@style/Theme.AppCompat.Light.NoActionBar], splashActivity following
+        themes.xml (light/night) theme! and in they, there is ActionBar, that it is a pretty ugly!
+        -->
         <activity
-            android:name=".MainActivity"/>
-
-        <!-- if no there this command: [android:theme="@style/Theme.AppCompat.Light.NoActionBar], splashActivity following
-        themes.xml (light/night) theme! and in they, there is ActionBar, that it is a pretty ugly!-->
-        <activity
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".ActivitySplash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

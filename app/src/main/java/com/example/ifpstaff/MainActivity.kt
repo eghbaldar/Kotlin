@@ -60,9 +60,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // It's clear
         setContentView(binding.root)
 
-        //First the RecyclerView is not visible and waiting for loading (after progressBar)
-        binding.CalendarOverviewRecyclerView.setVisibility(View.GONE)
-
         //Make visible Toggle Icon (Three-Line [DrawerNavigation] icon on actionbar)
         val toogle = ActionBarDrawerToggle(
             this,
@@ -110,6 +107,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // TODO: Set CalendarOverview Adapter
         // Observing...
         MainAtivityViewMode.returnCalendarOverview.observe(this, Observer { newValue ->
+            //First the RecyclerView is not visible and waiting for loading (after progressBar)
+            binding.CalendarOverviewRecyclerView.setVisibility(View.GONE)
+            //Second, Start the Loading of DATA from database
             displayOverviewCalendars(newValue)
         })
         //Set adapter to RecyclerView
@@ -119,10 +119,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //TODO: End..
     }
 
-    override fun onStart() {
-        super.onStart()
-        adapterOverView.notifyDataSetChanged()
-        //Toast.makeText(this,"Start",Toast.LENGTH_LONG).show()
+    override fun onResume() {
+        super.onResume()
+        //First the RecyclerView is not visible and waiting for updated (after progressBar)
+        binding.CalendarOverviewRecyclerView.setVisibility(View.GONE)
+        binding.progressBar.setVisibility(View.VISIBLE)
+        //Second, Start the *UPDATING* of DATA from database
+        MainAtivityViewMode.fetchCalendarOverview()
     }
 
     private fun displayOverviewCalendars(calOverview: List<ModelCalendarOverview>) {

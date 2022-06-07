@@ -4,12 +4,8 @@ import com.example.ifpstaff.model.ModelCalendar
 import com.example.ifpstaff.model.ModelCalendarUpdate
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.http.*
 import retrofit2.http.POST
-
-import retrofit2.http.FormUrlEncoded
 
 interface CalendarDbHandler {
 

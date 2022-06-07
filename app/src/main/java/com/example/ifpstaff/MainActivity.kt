@@ -1,32 +1,19 @@
 package com.example.ifpstaff
 
-import android.R.attr
-import android.app.ActionBar
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Button
-import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.ifpstaff.databinding.MainActivityBinding
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.navigation.NavigationView
 import androidx.lifecycle.ViewModelProvider
 import com.example.ifpstaff.databinding.ActivityDialogeInfoContactBinding
-import android.widget.LinearLayout
-import androidx.core.view.marginTop
-import android.R.attr.right
 
-import android.R.attr.left
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import com.example.ifpstaff.fragments.calendar.calendarAdapter
-import com.example.ifpstaff.model.ModelCalendar
 import com.example.ifpstaff.model.ModelCalendarOverview
 import androidx.recyclerview.widget.GridLayoutManager
 

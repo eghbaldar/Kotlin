@@ -1,13 +1,10 @@
 package com.example.ifpstaff
 
 import androidx.lifecycle.ViewModel
-import android.content.pm.PackageInfo
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.ifpstaff.model.ModelApk
 import com.example.ifpstaff.retrofitHandler.ApkDbHandler
-import com.example.ifpstaff.retrofitHandler.CalendarDbHandler
 import com.example.ifpstaff.retrofitService.RetrofitClientInstance
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable

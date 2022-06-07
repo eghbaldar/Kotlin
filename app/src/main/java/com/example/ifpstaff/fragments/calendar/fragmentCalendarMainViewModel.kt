@@ -1,18 +1,8 @@
 package com.example.ifpstaff.fragments.calendar
 
 import android.content.Context
-import android.graphics.Typeface
-import android.text.Html
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.style.RelativeSizeSpan
-import android.text.style.StyleSpan
 import android.util.Log
 import android.widget.Toast
-import androidx.core.text.HtmlCompat
-import androidx.core.text.set
-import androidx.core.text.toSpannable
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,7 +10,6 @@ import com.example.ifpstaff.general.ShamsiDate
 import com.example.ifpstaff.model.ModelCalendar
 import com.example.ifpstaff.retrofitHandler.CalendarDbHandler
 import com.example.ifpstaff.retrofitService.RetrofitClientInstance
-import com.google.android.gms.common.internal.Objects
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers

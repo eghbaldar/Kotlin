@@ -10,7 +10,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ifpstaff.model.ModelCalendarOverview
-import com.example.ifpstaff.retrofitHandler.CalendarDbHandler
 import com.example.ifpstaff.retrofitHandler.CalendarOverviewDbHandler
 import com.example.ifpstaff.retrofitService.RetrofitClientInstance
 import com.google.android.material.navigation.NavigationView

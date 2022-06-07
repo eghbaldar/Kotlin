@@ -1,14 +1,9 @@
 package com.example.ifpstaff
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.AttributeSet
-import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.lifecycle.Observer

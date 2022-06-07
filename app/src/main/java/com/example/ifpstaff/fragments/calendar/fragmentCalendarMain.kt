@@ -1,13 +1,11 @@
 package com.example.ifpstaff.fragments.calendar
 
-import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,27 +15,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
-import androidx.core.text.HtmlCompat
-import androidx.core.text.set
-import androidx.core.text.toSpannable
-import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ifpstaff.R
 import com.example.ifpstaff.databinding.FragmentCalendarMainBinding
-import com.example.ifpstaff.general.ShamsiDate
 import com.example.ifpstaff.model.ModelCalendar
-import com.example.ifpstaff.model.ModelCalendarUpdate
-import com.example.ifpstaff.retrofitHandler.CalendarDbHandler
-import com.example.ifpstaff.retrofitService.RetrofitClientInstance.retrofitInstance
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.*
-import saman.zamani.persiandate.PersianDate
-import saman.zamani.persiandate.PersianDateFormat
 
 
 class fragmentCalendarMain : Fragment(), AdapterView.OnItemSelectedListener {

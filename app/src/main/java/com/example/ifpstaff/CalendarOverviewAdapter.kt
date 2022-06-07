@@ -1,17 +1,11 @@
 package com.example.ifpstaff
 
-import android.app.AlertDialog
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ifpstaff.fragments.calendar.calendarAdapter
-import com.example.ifpstaff.model.ModelCalendar
 import com.example.ifpstaff.model.ModelCalendarOverview
 
 class CalendarOverviewAdapter() : RecyclerView.Adapter<CalendarOverviewAdapter.ViewHolder>() {

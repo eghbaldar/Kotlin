@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ifpstaff.model.ModelLogin
-import com.example.ifpstaff.retrofitHandler.ApkDbHandler
 import com.example.ifpstaff.retrofitHandler.LoginDbHelper
 import com.example.ifpstaff.retrofitService.RetrofitClientInstance
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers

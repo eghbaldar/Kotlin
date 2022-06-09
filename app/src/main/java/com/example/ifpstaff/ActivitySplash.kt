@@ -1,5 +1,6 @@
 package com.example.ifpstaff
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,10 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.ifpstaff.databinding.ActivitySplashBinding
+import android.content.SharedPreferences
+
+
+
 
 class ActivitySplash : AppCompatActivity() {
 
@@ -42,7 +47,7 @@ class ActivitySplash : AppCompatActivity() {
 
     //TODO: دستورات زیر در آنرزیوم نوشته شده است چون اگر بعد از رفتن به صفحه مرورگر، کاربر میل برگشت از طریق دکمه هوم را داشت، باز هم ورژن ها بررسی شود
     override fun onResume() {
-        // Does new version available on server for download?
+        //Does new version available on server for download?
         ActivitySplashViewModel.returnDoesNewApkVersion.observe(this, Observer { newValue ->
             startForClosingActivity(newValue)
         })
@@ -75,5 +80,7 @@ class ActivitySplash : AppCompatActivity() {
             }
         }
     }
+
+
 
 }

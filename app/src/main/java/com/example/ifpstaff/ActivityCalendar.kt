@@ -43,6 +43,8 @@ class ActivityCalendar : AppCompatActivity(), NavigationView.OnNavigationItemSel
         //for click on NavigationItems (با این دستور، برنامه آماده شنیدن فراخوان برای دگمه است که در تابع زیر گرفته میشود)
         binding.navView.setNavigationItemSelectedListener(this)
 
+        //
+
     }
 
     //region menuTopRight

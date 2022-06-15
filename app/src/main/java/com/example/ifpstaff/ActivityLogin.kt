@@ -45,8 +45,8 @@ class ActivityLogin : AppCompatActivity() {
                     showMsgMakeVibrate()
                 }
                 "NoValidated_CheckedSharedPreference" -> {
-                    binding.etPassword.text.clear()
-                    binding.etUsername.text.clear()
+//                    binding.etPassword.text.clear()
+//                    binding.etUsername.text.clear()
                 }
             }
         })
@@ -78,8 +78,8 @@ class ActivityLogin : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        binding.etPassword.text.clear()
-        binding.etUsername.text.clear()
+//        binding.etPassword.text.clear()
+//        binding.etUsername.text.clear()
         viewmode.loadPreferences(this) //everytime after showing this activity, User's authentication will be checked!
     }
 

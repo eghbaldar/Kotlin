@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.ifpstaff.databinding.MainActivityBinding
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -16,6 +17,8 @@ import com.example.ifpstaff.databinding.ActivityDialogeInfoContactBinding
 import androidx.lifecycle.Observer
 import com.example.ifpstaff.model.ModelCalendarOverview
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.ifpstaff.fragments.calendar.calendarAdapter
+import com.example.ifpstaff.fragments.calendar.fragmentCalendarMain
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,8 +31,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // Create Variable of ViewModel Class (MainActivity)
     private lateinit var MainAtivityViewMode: MainActivtyViewModel
 
-    //temp
-    private var adapterOverView = CalendarOverviewAdapter()
+    //Defination of Calendar Overview Adapter
+    private var adapterOverView = CalendarOverviewAdapter(
+        onClickEachDay = { it ->
+
+            //Passing CheckedDay to Fragment
+            val intent = Intent(this, ActivityCalendar::class.java)
+            val bundle = Bundle()
+            bundle.putString("CheckedDay",it.day)
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,10 +113,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             displayOverviewCalendars(newValue)
         })
         //Set adapter to RecyclerView
-        binding.CalendarOverviewRecyclerView.adapter= adapterOverView
+        binding.CalendarOverviewRecyclerView.adapter = adapterOverView
         // due to the following code, recyclerView items show in GRID mode!
         binding.CalendarOverviewRecyclerView.layoutManager = GridLayoutManager(this, 6)
         //TODO: End..
+
+        // Observing current date! = Today's Date
+        MainAtivityViewMode.returnCurrentDate.observe(this, Observer {
+            binding.tvCurrentDate.text = "تاریخ امروز: $it"
+        })
     }
 
     override fun onResume() {
@@ -125,7 +143,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.progressBar.setVisibility(View.GONE)
     }
 
-    //region menuTopRight
+//region menuTopRight
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         //Three dot corner in TOP-RIGHT on "ActionBar"
@@ -146,7 +164,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    //endregion
+//endregion
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
@@ -230,7 +248,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // show alert dialog
         alert.show()
     }
-    //endregion
+//endregion
 
     private fun showDefaultDialog(name: String, tell: String) {
         var dialogue: dialogue = dialogue(this)

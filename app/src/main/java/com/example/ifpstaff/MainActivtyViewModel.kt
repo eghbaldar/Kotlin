@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.ifpstaff.general.ShamsiDate
 import com.example.ifpstaff.model.ModelCalendarOverview
 import com.example.ifpstaff.retrofitHandler.CalendarOverviewDbHandler
 import com.example.ifpstaff.retrofitService.RetrofitClientInstance
@@ -24,6 +25,12 @@ class MainActivtyViewModel : ViewModel() {
     val returnCalendarOverview : LiveData<List<ModelCalendarOverview>>
     get() = _returnCalendarOverview
 
+    // Return current data
+    private val _returnCurrentDate = MutableLiveData<String>()
+    val returnCurrentDate : LiveData<String>
+    get() = _returnCurrentDate
+
+    private val ShamsiDate: ShamsiDate = ShamsiDate()
     private var compositeDisposable = CompositeDisposable()
 
     private val calendarOverviewDbHandler: CalendarOverviewDbHandler =
@@ -32,7 +39,13 @@ class MainActivtyViewModel : ViewModel() {
         )
 
     init {
+        setCurrentDate()
         fetchCalendarOverview()
+    }
+
+    private fun setCurrentDate() {
+        _returnCurrentDate.value =
+            "${ShamsiDate.getOnlyNumbericYear()}/${ShamsiDate.getOnlyNumbericMonth()}/${ShamsiDate.getOnlyNumbericDay()}"
     }
 
     override fun onCleared() {

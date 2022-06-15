@@ -114,9 +114,10 @@ class fragmentCalendarMainViewModel : ViewModel() {
         }
     }
 
+
     fun fetchProfiles(Year: String, Month: String, Day: String) {
 
-        //TODO: *********** the following codes function is management of first and last day of month!
+        //TODO: *********** the following codes function are managing of first and last day of month!
         var New_D: String = Day
         var New_M: String = (Month.toInt() + 1).toString() //chera plus 1? chon dare index mikhone
 
@@ -125,21 +126,30 @@ class fragmentCalendarMainViewModel : ViewModel() {
                 in 1..6 ->
                     if (New_D.toInt() > 31) {
                         New_D = "1"
+                        _returnNewDayForSpinner.value = "0"
                         New_M = (New_M.toInt() + 1).toString()
+                        _returnMewMonthSpinner.value = (New_M.toInt() - 1).toString()
                     }
                 in 7..12 ->
                     if (New_D.toInt() > 30) {
                         New_D = "1"
+                        _returnNewDayForSpinner.value = "0"
                         New_M = (New_M.toInt() + 1).toString()
+                        _returnMewMonthSpinner.value = (New_M.toInt() - 1).toString()
                     }
             }
         } else {
             New_M = (New_M.toInt() - 1).toString()
+            _returnMewMonthSpinner.value = (New_M.toInt() - 1).toString()
             when (New_M.toInt()) {
-                in 1..6 ->
+                in 1..6 -> {
                     New_D = "31"
-                in 7..12 ->
+                    _returnNewDayForSpinner.value = "30"
+                }
+                in 7..12 -> {
                     New_D = "30"
+                    _returnNewDayForSpinner.value = "29"
+                }
             }
         }
         //TODO: *********** End
@@ -162,13 +172,13 @@ class fragmentCalendarMainViewModel : ViewModel() {
                             //Set New Long Timestamp after change the time! maybe go to next or back!
                             getLongTimestampt_WithParticularDate(
                                 Year.toInt(),
-                                New_M.toInt() ,
+                                New_M.toInt(),
                                 New_D.toInt()
                             )
                             //Update Spinners
-                            _returnNewDayForSpinner.value = (New_D.toInt() - 1).toString()
-                            _returnMewMonthSpinner.value = (New_M.toInt() - 1).toString()
-                            _returnNewYearSpinner.value = Year
+//                            _returnNewDayForSpinner.value = (New_D.toInt() - 1).toString()
+//                            _returnMewMonthSpinner.value = (New_M.toInt() - 1).toString()
+//                            _returnNewYearSpinner.value = Year
                         },
                         { e ->
                             Log.e("fetchProfiles1", e.message ?: "onError")
@@ -226,10 +236,6 @@ class fragmentCalendarMainViewModel : ViewModel() {
 
     fun getLongTimestampt() {
         _currentDateTime.value = ShamsiDate.getLongTimestampt()
-    }
-
-    fun getOnlyNumbericDate(): String {
-        return ShamsiDate.getOnlyNumbericDate()
     }
 
     fun getOnlyNumbericYear(): Int {

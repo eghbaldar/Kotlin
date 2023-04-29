@@ -11,5 +11,4 @@ eghbaldar/kotlin_iranfilmport_staff
 - Overview of calendar
 
 ## License ##
-- License
-asdasasdas
+- License @ IRAN FILM PORT COMPANY
